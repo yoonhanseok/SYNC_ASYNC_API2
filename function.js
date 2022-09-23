@@ -44,10 +44,11 @@ $(document).ready(function(){
     url: "https://Ilruwain.com/api/testApi2",
     type: "post",
     data: {hash1: api1Hash, hash2: api1Hash2},
-    async: false,
+    async: true,
     success: function(data) {
       api1Hash3 = JSON.parse(data.hashed_data).hash3;
       api1Hash4 = JSON.parse(data.hashed_data).hash4;
+      $(".diaryWritten").append(api1Hash4+" 줬다.");
       console.log("API2_hash3= "+api1Hash3);
       console.log("API2_hash4= "+api1Hash4);
     },
@@ -67,10 +68,13 @@ $(document).ready(function(){
     url: "https://Ilruwain.com/api/testApi3",
     type: "post",
     data: {hash1: api1Hash, type: "text"},
-    async: false,
+    async: true,
     success: function(data) {
       name = data.name;
       text = data.text;
+      $(".diaryWritten").empty();
+      $(".diaryWritten").append(name+" ");
+      $(".diaryWritten").append(text+" ");
       console.log("name= "+name);
       console.log("text= "+text);
     },
@@ -127,21 +131,6 @@ $(document).ready(function(){
     },
   });
 // ===== API 5 END =====
-
-setTimeout(function(){
-  console.log(
-    "Hash1="+api1Hash,
-    "Hash2="+api1Hash2,
-    "Hash3="+api1Hash3,
-    "Hash4="+api1Hash4,
-    "Hash5="+api1Hash5,
-    "name="+name,
-    "text="+text,
-    "title="+title,
-  );
-
-
-}, 2000);
 
 
 }); // doument.ready.function END
