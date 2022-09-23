@@ -4,6 +4,7 @@ $(document).ready(function(){
 // ===== API NO.1 =====
   var nowDate = Date(); // yyyy-mm-dd로 아직 변환 못해서 임의로 넣어둠
   console.log(nowDate);
+
   $.ajax({
     url: "https://Ilruwain.com/api/testApi1",
     type: "get",
@@ -20,8 +21,12 @@ $(document).ready(function(){
       console.log("Hash 값: "+api1Hash);
       console.log("Hash2 값: "+api1Hash2);
     },
-    error: function(user) {
-      alert(user.message + user.code);
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
     },
   });
 
@@ -44,8 +49,12 @@ $(document).ready(function(){
       $(".diaryWritten").append(api3hash4);
       console.log(api3hash4);
     },
-    error: function(user) {
-      alert(user.message + user.code);
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
     },
   });
 // ===== API NO.2 END =====
@@ -66,8 +75,12 @@ $(document).ready(function(){
       console.log(api3Name+api3Text);
       console.log(api3Sentence);
     },
-    error: function(user) {
-      alert(user.message + user.code);
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
     },
   });
 // ===== API NO.3 END =====
