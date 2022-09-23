@@ -10,7 +10,6 @@ $(document).ready(function(){
 
   console.log(nowDate);
 
-
   var api1 =
   $.ajax({
     url: "https://Ilruwain.com/api/testApi1",
@@ -40,68 +39,65 @@ $(document).ready(function(){
 
 // ===== API NO.1 END =====
 
-console.log(api1);
-// 현 상태에서 api를 출력하면 [object] [object]로 출력 => 오브젝트상태라는 뜻
-
-var api1Hash = JSON.stringify(api1.responseJSON);
-// 문자열로 바꿨더니 첫번째 프로퍼티만 뜸
-console.log(api1Hash);
-
 
 // ===== API NO.2 =====
-  // $.ajax({
-  //   url: "https://Ilruwain.com/api/testApi2",
-  //   type: "post",
-  //   data: {hash1: api1Hash, hash2: api1Hash2},
-  //   dataType: "JSON",
-  //   // async: false,
-  //   success: function(data) {
-  //     var api3hash3 = JSON.parse(data.hashed_data).hash3;
-  //     // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
-  //
-  //     var api3hash4 = JSON.parse(data.hashed_data).hash4;
-  //     // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
-  //
-  //     $(".diaryWritten").append(api3hash4);
-  //     console.log(api3hash4);
-  //   },
-  //   error: function(data) {
-  //     if(data.status === 500) {
-  //       alert("서버에 오류가 발생했습니다");
-  //     } else {
-  //       alert(data.message + data.code);
-  //     }
-  //   },
-  // });
+var api2 =
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi2",
+    type: "post",
+    data: {hash1: api1Hash, hash2: api1Hash2},
+    dataType: "JSON",
+    // async: false,
+    success: function(data) {
+      var api3hash3 = JSON.parse(data.hashed_data).hash3;
+      // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
+
+      var api3hash4 = JSON.parse(data.hashed_data).hash4;
+      // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
+
+      $(".diaryWritten").append(api3hash4);
+      console.log(api3hash4);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
 // ===== API NO.2 END =====
 
 
 // ===== API NO.3 =====
-  // $.ajax({
-  //   url: "https://Ilruwain.com/api/testApi3",
-  //   type: "post",
-  //   data: {hash1: api1Hash, type: "text"},
-  //   dataType: "JSON",
-  //   success: function(data) {
-  //     var api3Name = data.name;
-  //     var api3Text = data.text;
-  //     var api3Sentence = data.name + data.text;
-  //
-  //     $(".diaryWritten").append(api3Name+api3Text);
-  //     console.log(api3Name+api3Text);
-  //     console.log(api3Sentence);
-  //   },
-  //   error: function(data) {
-  //     if(data.status === 500) {
-  //       alert("서버에 오류가 발생했습니다");
-  //     } else {
-  //       alert(data.message + data.code);
-  //     }
-  //   },
-  // });
+var api3 =
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi3",
+    type: "post",
+    data: {hash1: api1Hash, type: "text"},
+    dataType: "JSON",
+    success: function(data) {
+      var api3Name = data.name;
+      var api3Text = data.text;
+      var api3Sentence = data.name + data.text;
+  
+      $(".diaryWritten").append(api3Name+api3Text);
+      console.log(api3Name+api3Text);
+      console.log(api3Sentence);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
 // ===== API NO.3 END =====
 
-
+console.log(api1);
+console.log(api2);
+console.log(api3);
 
 
 }); // doument.ready.function END
