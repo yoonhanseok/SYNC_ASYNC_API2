@@ -6,17 +6,16 @@ $(document).ready(function(){
 // ===== API NO.1 =====
   var dateData = new Date(); // yyyy-mm-dd로 아직 변환 못해서 임의로 넣어둠
   var nowDate = `${dateData.getFullYear()}-0${dateData.getMonth()+1}-${dateData.getDate()}`;
-  // var today = Temporal.Now.plainDateISO();
+  // Month는 한 자리수 일 경우 앞에 0이 붙는 알고리즘이 들어가야 하는데, 일단은 임시로 앞에 0을 넣어두었음
 
   console.log(nowDate);
-  // console.log(today.toString());
+
 
   var api1 =
   $.ajax({
     url: "https://Ilruwain.com/api/testApi1",
     type: "get",
-    data: {date: nowDate, user: "test1"}, //임의로 날짜 넣어봄
-    // dataType: "JSON",
+    data: {date: nowDate, user: "test1"},
     success: function(data) {
       var api1Hash = JSON.parse(data.test_data).hash;
       // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
@@ -44,7 +43,8 @@ $(document).ready(function(){
 console.log(api1);
 // 현 상태에서 api를 출력하면 [object] [object]로 출력 => 오브젝트상태라는 뜻
 
-var api1Hash = JSON.stringify(api1);
+var api1Hash = JSON.stringify(api1.responseJSON);
+// 문자열로 바꿨더니 첫번째 프로퍼티만 뜸
 console.log(api1Hash);
 
 
