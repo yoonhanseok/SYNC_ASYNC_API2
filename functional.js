@@ -38,7 +38,7 @@ $(document).ready(function(){
   });
 
 // ===== API NO.1 END =====
-
+console.log(api1);
 
 // ===== API NO.2 =====
 var api2 =
@@ -80,7 +80,7 @@ var api3 =
       var api3Name = data.name;
       var api3Text = data.text;
       var api3Sentence = data.name + data.text;
-  
+
       $(".diaryWritten").append(api3Name+api3Text);
       console.log(api3Name+api3Text);
       console.log(api3Sentence);
@@ -95,7 +95,7 @@ var api3 =
   });
 // ===== API NO.3 END =====
 
-console.log(api1);
+
 console.log(api2);
 console.log(api3);
 

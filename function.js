@@ -7,68 +7,141 @@ $(document).ready(function(){
   var dateData = new Date();
   var nowDate = `${dateData.getFullYear()}-0${dateData.getMonth()+1}-${dateData.getDate()}`;
 
-  var api1Hash = "";
-  var api1Hash2 = "";
-  var ajaxCallFunction = function (url, type, async, data, successCallBack) {
-    $.ajax({
-      url: url,
-      type: type,
-      async: async,
-      data: data,
-      success: successCallBack,
-      error: function(data) {
-        if(data.status === 500) {
-          alert("서버에 오류가 발생했습니다");
-        } else {
-          alert(data.message + data.code);
-        }
-      },
-    });
-  };
+  var api1Hash;
+  var api1Hash2;
+  var api1Hash3;
+  var api1Hash4;
+  var api1Hash5;
+  var name;
+  var text;
 
-  var api1 = ajaxCallFunction(
-    "https://Ilruwain.com/api/testApi1",
-    "get",
-    true,
-    {date: nowDate, user: "test1"},
-    function(data) {
-    var api1Hash = JSON.parse(data.test_data).hash;
-    var api1Hash2 = JSON.parse(data.test_data).hash2;
-    console.log("Hash 값: "+api1Hash);
-    console.log("Hash2 값: "+api1Hash2);
+// ===== API 1 START =====
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi1",
+    type: "get",
+    data: {date: nowDate, user: "test1"},
+    async: false,
+    success: function(data) {
+      api1Hash = JSON.parse(data.test_data).hash;
+      api1Hash2 = JSON.parse(data.test_data).hash2;
+      console.log("API1_hash= "+api1Hash);
+      console.log("API1_hash2= "+api1Hash2);
     },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
+  // ===== API 1 END =====
+
+
+
+// ===== API 2 START =====
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi2",
+    type: "post",
+    data: {hash1: api1Hash, hash2: api1Hash2},
+    async: false,
+    success: function(data) {
+      api1Hash3 = JSON.parse(data.hashed_data).hash3;
+      api1Hash4 = JSON.parse(data.hashed_data).hash4;
+      console.log("API2_hash3= "+api1Hash3);
+      console.log("API2_hash4= "+api1Hash4);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
+// ===== API 2 END =====
+
+
+// ===== API 3 START =====
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi3",
+    type: "post",
+    data: {hash1: api1Hash, type: "text"},
+    async: false,
+    success: function(data) {
+      name = data.name;
+      text = data.text;
+      console.log("name= "+name);
+      console.log("text= "+text);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
+// ===== API 3 END =====
+
+
+// ===== API 4 START =====
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi4",
+    type: "get",
+    data: {user: "test2", hash1: api1Hash},
+    async: false,
+    success: function(data) {
+      api1Hash5 = data.hash5;
+      console.log("API2_hash5= "+api1Hash5);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
+// ===== API 4 END =====
+
+
+// ===== API 5 START =====
+  $.ajax({
+    url: "https://Ilruwain.com/api/testApi5",
+    type: "post",
+    data: {user: "test2", hash5: api1Hash5},
+    async: false,
+    success: function(data) {
+      title = data.title;
+      $(".diaryTitle").append(title);
+      $(".diaryWritten").append("로딩중...");
+      console.log("title= "+title);
+    },
+    error: function(data) {
+      if(data.status === 500) {
+        alert("서버에 오류가 발생했습니다");
+      } else {
+        alert(data.message + data.code);
+      }
+    },
+  });
+// ===== API 5 END =====
+
+setTimeout(function(){
+  console.log(
+    "Hash1="+api1Hash,
+    "Hash2="+api1Hash2,
+    "Hash3="+api1Hash3,
+    "Hash4="+api1Hash4,
+    "Hash5="+api1Hash5,
+    "name="+name,
+    "text="+text,
+    "title="+title,
   );
 
-  console.log(api1);
 
-  // var api1 =
-  // $.ajax({
-  //   url: "https://Ilruwain.com/api/testApi1",
-  //   type: "get",
-  //   data: {date: nowDate, user: "test1"},
-  //   success: function(data) {
-  //     var api1Hash = JSON.parse(data.test_data).hash;
-  //     // test_data 값의 문자열 타입을 객체로 바꾸고, hash 값 추출
-  //     var api1Hash2 = JSON.parse(data.test_data).hash2;
-  //     // test_data 값의 문자열 타입을 객체로 바꾸고, hash2 값 추출
-  //
-  //     //지역변수로 만든 api1Hash를 리턴해서 변수api1에 담아볼까 했는데, 나 작동하지 않음
-  //
-  //     // return JSON.stringify(api1Hash);
-  //
-  //     console.log("Hash 값: "+api1Hash);
-  //     console.log("Hash2 값: "+api1Hash2);
-  //   },
-  //   error: function(data) {
-  //     if(data.status === 500) {
-  //       alert("서버에 오류가 발생했습니다");
-  //     } else {
-  //       alert(data.message + data.code);
-  //     }
-  //   },
-  // });
-
- var api1Hash = "";
+}, 2000);
 
 
 }); // doument.ready.function END
