@@ -127,17 +127,4 @@ $(document).ready(function(){
   });
   // ===== API 1 END =====
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }); // doument.ready.function END
