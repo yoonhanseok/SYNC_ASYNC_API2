@@ -36,8 +36,7 @@ $(document).ready(function(){
     },
   });
   // ===== API 1 END =====
-
-
+  
 
 // ===== API 2 START =====
   $.ajax({
