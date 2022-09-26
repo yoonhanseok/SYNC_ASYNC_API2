@@ -6,7 +6,7 @@ $(document).ready(function(){
   var dateData = new Date();
   var nowDate = `${dateData.getFullYear()}-0${dateData.getMonth()+1}-${dateData.getDate()}`;
 
-  console.log("API_Process START");
+  console.log("API_호출 START");
 
 // ===== API 1 START =====
   $.ajax({
@@ -29,6 +29,7 @@ $(document).ready(function(){
           var api2Hash4 = JSON.parse(data.hashed_data).hash4;
           function api2Process() {
           $(".diaryWritten").append(api2Hash4+" 줬다.");
+          console.log("API2_출력");
           };
           console.log("API2_hash3= "+api2Hash3);
           console.log("API2_hash4= "+api2Hash4);
@@ -45,6 +46,7 @@ $(document).ready(function(){
               $(".diaryWritten").empty();
               $(".diaryWritten").append(name+" ");
               $(".diaryWritten").append(text+" ");
+              console.log("API3_출력");
               };
               console.log("API3_name= "+name);
               console.log("API3_text= "+text);
@@ -66,13 +68,14 @@ $(document).ready(function(){
                     success: function(data) {
                       var title = data.title;
                       // function api5_title(title){
+                      console.log("API5_title= "+title);
+                      console.log("API_호출 END");
                         $(".diaryTitle").append(title);
                         $(".diaryWritten").append("로딩중...");
                         api3Process();
-                        api2Process()            
+                        api2Process()
                       // };
-                      console.log("API5_title= "+title);
-                      console.log("API_Process END");
+                      console.log("API5_출력");
                     },
                     error: function(data) {
                       if(data.status === 500) {
