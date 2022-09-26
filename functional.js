@@ -70,12 +70,13 @@ $(document).ready(function(){
                       // function api5_title(title){
                       console.log("API5_title= "+title);
                       console.log("API_호출 END");
+                      console.log("API5_출력");
                         $(".diaryTitle").append(title);
                         $(".diaryWritten").append("로딩중...");
                         api3Process();
                         api2Process()
                       // };
-                      console.log("API5_출력");
+
                     },
                     error: function(data) {
                       if(data.status === 500) {
