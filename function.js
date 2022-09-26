@@ -38,6 +38,7 @@
 //   // ===== API 1 END =====
 //
 //
+//
 // // ===== API 2 START =====
 //   $.ajax({
 //     url: "https://Ilruwain.com/api/testApi2",
@@ -130,6 +131,19 @@
 //     },
 //   });
 // // ===== API 5 END =====
+//
+// setTimeout(function(){
+//   console.log(
+//     "Hash1="+api1Hash,
+//     "Hash2="+api1Hash2,
+//     "Hash3="+api1Hash3,
+//     "Hash4="+api1Hash4,
+//     "Hash5="+api1Hash5,
+//     "name="+name,
+//     "text="+text,
+//     "title="+title,
+//   );
+// }, 2000);
 //
 //
 // }); // doument.ready.function END
